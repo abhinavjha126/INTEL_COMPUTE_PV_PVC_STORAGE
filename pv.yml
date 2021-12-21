@@ -1,0 +1,28 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: lustre-local-storage
+provisioner: kubernetes.io/no-provisioner
+root@kube-ubuntu-master:/home/ubuntu/slurm/lustre_local_storage# cat pv.yml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: slurm-local-pv
+  namespace: jhub-no-cull
+spec:
+  capacity:
+    storage: 500Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: lustre-local-storage
+  local:
+    path: /lustre
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - b5r13u15
