@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: lustre-local-storage-claim
+  namespace: jhub-no-cull
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: lustre-local-storage
+  resources:
+    requests:
+      storage: 500Gi
