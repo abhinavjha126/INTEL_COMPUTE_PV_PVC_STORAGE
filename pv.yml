@@ -1,9 +1,3 @@
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: lustre-local-storage
-provisioner: kubernetes.io/no-provisioner
-root@kube-ubuntu-master:/home/ubuntu/slurm/lustre_local_storage# cat pv.yml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
